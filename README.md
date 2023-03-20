@@ -1,5 +1,5 @@
 
-# ArgFounding
+# ArgFunding
 
 Crowdfunding platform where you can create your campaigns and add different donation tiers, put reward based on the prize of the donation, just like KickStarter. 
 
