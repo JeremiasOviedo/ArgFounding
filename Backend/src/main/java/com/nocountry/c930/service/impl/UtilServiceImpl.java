@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class UtilServiceImpl implements IUtilService {
 
+    @Autowired
     private UserRepository userRepo;
 
     @Override

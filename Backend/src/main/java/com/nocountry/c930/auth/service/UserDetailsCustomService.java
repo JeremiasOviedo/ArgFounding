@@ -7,7 +7,7 @@ import com.nocountry.c930.entity.RoleEntity;
 import com.nocountry.c930.entity.UserEntity;
 import com.nocountry.c930.enumeration.RoleName;
 import com.nocountry.c930.mapper.UserMap;
-import com.nocountry.c930.mapper.exception.RepeatedUsername;
+import com.nocountry.c930.exception.RepeatedUsername;
 import com.nocountry.c930.repository.RoleRepository;
 import com.nocountry.c930.repository.UserRepository;
 import com.nocountry.c930.service.impl.StorageService;

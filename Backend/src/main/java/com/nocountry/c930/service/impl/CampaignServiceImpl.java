@@ -8,8 +8,8 @@ import com.nocountry.c930.enumeration.RoleName;
 import com.nocountry.c930.mapper.CampaignMap;
 import com.nocountry.c930.mapper.DonationMap;
 import com.nocountry.c930.mapper.DonationTierMap;
-import com.nocountry.c930.mapper.exception.NotAllowed;
-import com.nocountry.c930.mapper.exception.ParamNotFound;
+import com.nocountry.c930.exception.NotAllowed;
+import com.nocountry.c930.exception.ParamNotFound;
 import com.nocountry.c930.repository.*;
 import com.nocountry.c930.service.ICampaignService;
 import com.nocountry.c930.service.IUtilService;
@@ -186,6 +186,7 @@ public class CampaignServiceImpl implements ICampaignService {
         CampaignEntity campaign = campaignRepo.findById(id).orElseThrow(
                 () -> new ParamNotFound("Campaign doesn't exist"));
 
+
         campaignRepo.delete(campaign);
     }
 
@@ -193,7 +194,7 @@ public class CampaignServiceImpl implements ICampaignService {
     public void updateCampaignMoney(Long idCampaign) {
 
         CampaignEntity campaign = campaignRepo.findById(idCampaign).orElseThrow(
-                () -> new ParamNotFound("Campaign doesn't existe")
+                () -> new ParamNotFound("Campaign doesn't exist")
         );
 
         BigDecimal currentMoney = new BigDecimal(0);

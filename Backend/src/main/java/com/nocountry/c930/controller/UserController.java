@@ -39,13 +39,9 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "User ID is invalid (must use numbers value only"),
             @ApiResponse(code = 404, message = "User not found")})
-    public ResponseEntity<UserDto> getUser(@PathVariable(name = "id") Long idUser) {
+    public UserDto getUser(@PathVariable(name = "id") Long idUser) {
 
-        UserDto dto = userService.getUser(idUser);
-
-        return ResponseEntity.status(HttpStatus.OK).body(dto);
-
-
+        return userService.getUser(idUser);
     }
 
 
@@ -76,34 +72,26 @@ public class UserController {
             @ApiResponse(code = 400, message = "User ID is invalid (User number values only)"),
             @ApiResponse(code = 401, message = "You can only update your own information"),
             @ApiResponse(code = 404, message = "User not found")})
-    public ResponseEntity<UserDto> updateUser(@PathVariable(name = "id") Long idUser, @RequestBody UserRegistrationDto dto) {
+    public UserDto updateUser(@PathVariable(name = "id") Long idUser, @RequestBody UserRegistrationDto dto) {
 
-        UserDto responseUserDto = userService.updateUser(idUser, dto);
-
-        return ResponseEntity.status(HttpStatus.OK).body(responseUserDto);
-
+        return userService.updateUser(idUser, dto);
     }
 
     @GetMapping("/{id}/campaigns")
     @ApiOperation(value = "Gets all the campaigns made by an user")
-    public ResponseEntity<List<CampaignBasicDto>> getCampaignByUser(@PathVariable(name = "id") Long idUser) {
+    public List<CampaignBasicDto> getCampaignByUser(@PathVariable(name = "id") Long idUser) {
 
-        List<CampaignBasicDto> result = campaignService.listCampaignByUser(idUser);
-
-        return ResponseEntity.status(HttpStatus.OK).body(result);
-
-
+        return campaignService.listCampaignByUser(idUser);
     }
 
 
     @GetMapping()
     @ApiOperation(value = "List All Users",
             notes = "Gives you a paginated list of all the users, only administrators can use this endpoint")
-    public ResponseEntity<PageDto<UserDto>> getAllUsers(@PageableDefault(size = 5) Pageable page,
-                                                        HttpServletRequest request) {
+    public PageDto<UserDto> getAllUsers(@PageableDefault(size = 5) Pageable page,
+                                        HttpServletRequest request) {
 
-        PageDto<UserDto> result = userService.listAllUsers(page, request);
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+        return userService.listAllUsers(page, request);
     }
 
 

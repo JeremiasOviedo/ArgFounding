@@ -7,8 +7,7 @@ import com.nocountry.c930.entity.RoleEntity;
 import com.nocountry.c930.entity.UserEntity;
 import com.nocountry.c930.enumeration.RoleName;
 import com.nocountry.c930.mapper.UserMap;
-import com.nocountry.c930.mapper.exception.NotAllowed;
-import com.nocountry.c930.mapper.exception.ParamNotFound;
+import com.nocountry.c930.exception.ParamNotFound;
 import com.nocountry.c930.repository.RoleRepository;
 import com.nocountry.c930.repository.UserRepository;
 import com.nocountry.c930.service.IUserService;
@@ -16,7 +15,6 @@ import com.nocountry.c930.service.IUtilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,6 @@
-package com.nocountry.c930.mapper.exception;
+package com.nocountry.c930.exception;
+
+
 
 public class ParamNotFound extends RuntimeException {
 

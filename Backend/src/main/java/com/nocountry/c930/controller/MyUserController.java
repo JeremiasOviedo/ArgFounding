@@ -22,11 +22,9 @@ public class MyUserController {
 
     @GetMapping("/campaigns")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ResponseEntity<List<CampaignBasicDto>> getMyCampaigns() {
+    public List<CampaignBasicDto> getMyCampaigns() {
 
-        List<CampaignBasicDto> result = campaignService.getMyCampaigns();
-
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+        return campaignService.getMyCampaigns();
 
 
     }

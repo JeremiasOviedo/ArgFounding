@@ -1,4 +1,4 @@
-package com.nocountry.c930.mapper.exception;
+package com.nocountry.c930.exception;
 
 import org.springframework.security.core.AuthenticationException;
 

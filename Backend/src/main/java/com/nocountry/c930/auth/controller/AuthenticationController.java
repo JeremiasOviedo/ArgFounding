@@ -58,7 +58,7 @@ public class AuthenticationController {
             @ApiResponse(code = 400, message = "Invalid credentials"),
             @ApiResponse(code = 404, message = "User not found")})
     public ResponseEntity<AuthenticationResponse> signIn(
-            @RequestBody AuthenticationRequest authenticationRequest) {
+          @Valid @RequestBody AuthenticationRequest authenticationRequest) {
 
         UserDetails userDetails;
 

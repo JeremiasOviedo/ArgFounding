@@ -13,14 +13,14 @@ import javax.validation.constraints.Size;
 @Setter
 @NoArgsConstructor
 public class UserRegistrationDto {
-    @NotEmpty
+    @NotEmpty(message = "First name must not be blank")
     private String firstName;
-    @NotEmpty
+    @NotEmpty(message = "Last name must not be blank")
     private String lastName;
-    @NotEmpty
-    @Email(message = "the email must be real email")
+    @NotEmpty(message = "Email must not be blank")
+    @Email(message = "The email must be real email")
     private String email;
-    @NotEmpty
+    @NotEmpty(message = "Password must not be blank")
     @Size(min = 8)
     private String password;
 

@@ -22,59 +22,44 @@ public class SearchController {
 
     @GetMapping()
     @ApiOperation(value = "Searches between all campaign by keyword")
-    public ResponseEntity<List<CampaignBasicDto>> searchAllByKeyword(@RequestParam(required = false) String keyword) {
+    public List<CampaignBasicDto> searchAllByKeyword(@RequestParam(required = false) String keyword) {
 
-
-        List<CampaignBasicDto> result = campaignService.searchCampaignsByKeyword(keyword);
-
-        return ResponseEntity.status(HttpStatus.OK).body(result);
-
+        return campaignService.searchCampaignsByKeyword(keyword);
     }
 
     @GetMapping("/services")
     @ApiOperation(value = "Search services campaigns by keyword")
-    public ResponseEntity<List<CampaignBasicDto>> searchServicesCampaigns(@RequestParam(required = false) String keyword) {
+    public List<CampaignBasicDto> searchServicesCampaigns(@RequestParam(required = false) String keyword) {
 
-        List<CampaignBasicDto> result = campaignService.searchCampaignByCategoryAndKeyword(keyword, CampaignCategory.SERVICE);
-
-        return ResponseEntity.status(HttpStatus.OK).body(result);
-
+        return campaignService.searchCampaignByCategoryAndKeyword(keyword, CampaignCategory.SERVICE);
     }
 
     @GetMapping("/products")
     @ApiOperation(value = "Search product campaigns by keyword")
-    public ResponseEntity<List<CampaignBasicDto>> searchProductCampaigns(@RequestParam(required = false) String keyword) {
+    public List<CampaignBasicDto> searchProductCampaigns(@RequestParam(required = false) String keyword) {
 
-        List<CampaignBasicDto> result = campaignService.searchCampaignByCategoryAndKeyword(keyword, CampaignCategory.PRODUCT);
-
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+        return campaignService.searchCampaignByCategoryAndKeyword(keyword, CampaignCategory.PRODUCT);
     }
 
     @GetMapping("/nearGoal")
     @ApiOperation(value = "List all the campaigns with 80% or more completion")
-    public ResponseEntity<List<CampaignBasicDto>> getByNearGoal() {
+    public List<CampaignBasicDto> getByNearGoal() {
 
-        List<CampaignBasicDto> result = campaignService.listCampaignsNearGoal();
-
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+        return campaignService.listCampaignsNearGoal();
     }
 
     @GetMapping("/mostPopular")
     @ApiOperation(value = "Filters all the campaign by donations recieved")
-    public ResponseEntity<List<CampaignBasicDto>> getByMostPopular(@RequestParam(required = false) String keyword) {
+    public List<CampaignBasicDto> getByMostPopular(@RequestParam(required = false) String keyword) {
 
-        List<CampaignBasicDto> result = campaignService.listCampaignsByMostPopular(keyword);
-
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+        return campaignService.listCampaignsByMostPopular(keyword);
     }
 
     @GetMapping("/newest")
     @ApiOperation(value = "Gets all the campaigns by Date")
-    public ResponseEntity<List<CampaignBasicDto>> getByNewest() {
+    public List<CampaignBasicDto> getByNewest() {
 
-        List<CampaignBasicDto> result = campaignService.listCampaignsByDate("DESC");
-
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+        return campaignService.listCampaignsByDate("DESC");
     }
 
 }
