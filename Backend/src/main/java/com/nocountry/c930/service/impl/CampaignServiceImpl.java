@@ -66,6 +66,9 @@ public class CampaignServiceImpl implements ICampaignService {
 
         if (dto.getImage() != null) {
             campaignEntity.setBannerUrl(storageService.uploadImage(dto.getImage()));
+        } else {
+
+            campaignEntity.setBannerUrl("https://argfunding.s3.sa-east-1.amazonaws.com/Banner-Placeholder.png");
         }
 
         if (user.getImageUrl() != null) {
@@ -91,10 +94,11 @@ public class CampaignServiceImpl implements ICampaignService {
             DonationTierEntity donationTierEntity = tierMap.tierDto2Entity(tierDto);
             DonationTierEntity entitySaved = tierRepo.save(donationTierEntity);
 
-            if (donationTierEntity.getImageUrl() == null) {
-                donationTierEntity.setImageUrl("https://argfoundingimages.nyc3.cdn.digitaloceanspaces.com/donation_tier_placeholder.png");
+            if (donationTierEntity.getImageUrl() != null) {
+
+            }else{
+                donationTierEntity.setImageUrl("https://argfunding.s3.sa-east-1.amazonaws.com/donation_tier_placeholder.png");
             }
-            donationTierEntity.setImageUrl(storageService.uploadImage(tierDto.getImage()));
             donationTierEntity.setCampaign(campaignEntity);
 
 
