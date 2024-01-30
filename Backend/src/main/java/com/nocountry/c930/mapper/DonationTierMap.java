@@ -3,13 +3,19 @@ package com.nocountry.c930.mapper;
 import com.nocountry.c930.dto.DonationTierDto;
 import com.nocountry.c930.dto.TierCreationDto;
 import com.nocountry.c930.entity.DonationTierEntity;
+import com.nocountry.c930.service.impl.StorageService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
 @Component
 public class DonationTierMap {
+
+    @Autowired
+    StorageService storageService;
 
     public DonationTierDto tierEntity2Dto(DonationTierEntity entity) {
         DonationTierDto dto = new DonationTierDto();
@@ -23,7 +29,7 @@ public class DonationTierMap {
         return dto;
     }
 
-    public DonationTierEntity tierDto2Entity(TierCreationDto dto) {
+    public DonationTierEntity tierDto2Entity(TierCreationDto dto) throws IOException {
 
         DonationTierEntity entity = new DonationTierEntity();
 
@@ -32,14 +38,23 @@ public class DonationTierMap {
         entity.setDescription(dto.getDescription());
         entity.setLimited(dto.isLimited());
 
-        if (dto.isLimited()){
+        if (dto.getImage() != null) {
+
+            entity.setImageUrl(storageService.uploadImage(dto.getImage()));
+
+        } else {
+
+            entity.setImageUrl("https://argfunding.s3.sa-east-1.amazonaws.com/donation_tier_placeholder.png");
+        }
+
+        if (dto.isLimited()) {
             entity.setStockLimit(dto.getStockLimit());
         }
 
         return entity;
     }
 
-    public Set<DonationTierEntity> tierDtoSet2Entity(Set<TierCreationDto> dtos) {
+    public Set<DonationTierEntity> tierDtoSet2Entity(Set<TierCreationDto> dtos) throws IOException {
 
         Set<DonationTierEntity> entities = new HashSet<>();
 

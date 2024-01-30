@@ -64,7 +64,7 @@ public class UserDetailsCustomService implements UserDetailsService {
                 throw new RuntimeException(e);
             }
         }else {
-            userEntity.setImageUrl("https://argfoundingimages.nyc3.cdn.digitaloceanspaces.com/User_Placeholder.png");
+            userEntity.setImageUrl("https://argfunding.s3.sa-east-1.amazonaws.com/User_Placeholder.png");
         }
 
 

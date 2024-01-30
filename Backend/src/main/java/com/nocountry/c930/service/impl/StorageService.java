@@ -31,7 +31,7 @@ public class StorageService {
 
         space = AmazonS3ClientBuilder.standard()
                 .withCredentials(awsCredentialsProvider)
-                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("https://argfoundingimages.nyc3.digitaloceanspaces.com", "nyc3"))
+                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("https://argfunding.s3.sa-east-1.amazonaws.com/","sa-east-1"))
                 .build();
     }
 
@@ -40,9 +40,9 @@ public class StorageService {
 
         ObjectMetadata objectMetadata = new ObjectMetadata();
         objectMetadata.setContentType(image.getContentType());
-        space.putObject(new PutObjectRequest("", image.getOriginalFilename(), image.getInputStream(), objectMetadata).withCannedAcl(CannedAccessControlList.PublicRead));
+        space.putObject(new PutObjectRequest("", image.getOriginalFilename(), image.getInputStream(), objectMetadata));
 
-        return "https://argfoundingimages.nyc3.cdn.digitaloceanspaces.com/" + image.getOriginalFilename();
+        return "https://argfunding.s3.sa-east-1.amazonaws.com/" + image.getOriginalFilename();
 
 
     }
